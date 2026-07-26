@@ -98,6 +98,7 @@ ignore = [
   "RUF105",  # we prefer `# noqa`, over `# ruff` comments
   "RUF106",  #
   "RUF201",  #
+  "ERA001",  # commented-out-code
 ]
 
 # Plugin configs:
