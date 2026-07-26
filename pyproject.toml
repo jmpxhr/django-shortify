@@ -29,6 +29,18 @@ dev = [
   "django-stubs[compatible-mypy]>=6.0.7,<6.1.0",
 ]
 
+[tool.pyrefly]
+preset = "strict"
+project-includes = ["server/**/*.py"]
+
+[tool.pyrefly.errors]
+unbound-name = "error"
+redundant-condition = "error"
+no-any-return = "error"
+redundant-cast = "warn"
+deprecated = "error"
+unused-coroutine = "error"
+
 [tool.uv]
 # Docs: https://docs.astral.sh/uv/reference/settings
 package = false
