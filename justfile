@@ -23,10 +23,9 @@ format:
 lint:
     uv run ruff check --exit-non-zero-on-fix
     uv run ruff format --check --diff
-    uv run flake8 .
 
 # Run all type checkers
 [group('type-check')]
 type-check:
     uv run mypy .
-    uv run pyright
+    uv run pyrefly check --remove-unused-ignores
