@@ -25,7 +25,9 @@ SECRET_KEY: Final[str] = config('DJANGO_SECRET_KEY')
 
 # Application definition
 
-_APPS: list[str] = []
+_APPS: list[str] = [
+    'server.apps.shortify',
+]
 
 _DJANGO_APPS: list[str] = [
     'django.contrib.admin',

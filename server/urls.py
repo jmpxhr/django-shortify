@@ -21,21 +21,23 @@ from django.contrib.admindocs import urls as admindocs_urls
 from django.urls import include, path
 from django.views.generic import TemplateView
 from dmr.openapi import build_schema
-from dmr.openapi.views import (
-    OpenAPIJsonView,
-    ScalarView,
-    SwaggerView,
-)
+from dmr.openapi.views import OpenAPIJsonView, ScalarView, SwaggerView
 from dmr.openapi.views.yaml import OpenAPIYamlView
 from dmr.plugins.msgspec import MsgspecSerializer
 from dmr.routing import Router, build_404_handler, build_500_handler
 
+from server.apps.shortify import urls as shortify_urls
+from server.apps.shortify.api.urls import router as shortify_api_urls
+
 admin.autodiscover()
 
 router = Router(
-    'api/',
+    'api/v1/',
     [
-        # path('user/', include(main_api_urls, namespace='main')),
+        path(
+            shortify_api_urls.prefix,
+            include((shortify_api_urls.urls, 'shortify')),
+        ),
     ],
 )
 schema = build_schema(router)
@@ -44,6 +46,7 @@ handler404 = build_404_handler(router.prefix, serializer=MsgspecSerializer)
 handler500 = build_500_handler(router.prefix, serializer=MsgspecSerializer)
 
 urlpatterns = [
+    path('', include(shortify_urls, namespace='shortify')),
     # API:
     path(router.prefix, include((router.urls, 'server'), namespace='api')),
     # OpenAPI:

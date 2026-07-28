@@ -29,3 +29,8 @@ lint:
 type-check:
     uv run mypy .
     uv run pyrefly check --remove-unused-ignores
+
+# Run dev server
+[group('dev')]
+dev:
+  uv run manage.py runserver
