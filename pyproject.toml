@@ -44,6 +44,7 @@ unused-coroutine = "error"
 [tool.uv]
 # Docs: https://docs.astral.sh/uv/reference/settings
 package = false
+add-bounds = "major"
 
 [tool.ruff]
 # Ruff config: https://docs.astral.sh/ruff/settings
